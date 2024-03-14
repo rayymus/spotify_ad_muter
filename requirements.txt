@@ -1,0 +1,6 @@
+numpy
+pyautogui
+pytesseract
+pygame
+pyobjc-framework-Quartz
+pillow
