@@ -23,7 +23,7 @@ muted = False
 
 windowName = "Spotify"
 windowId = None
-# bottom_left = None
+
 
 def findWindowId() -> bool:
     global windowId, bottom_left
@@ -36,6 +36,7 @@ def findWindowId() -> bool:
             return True
 
     return False
+
 
 def takeScreenshot() -> numpy.ndarray:
     if windowId is None:
@@ -79,6 +80,7 @@ def get_frontmost_application() -> Any:
             break
 
     return frontmost_application
+
 
 def mute_toggle(pos: Tuple[int, int]) -> None:
     mouse_pos = pyautogui.position()
