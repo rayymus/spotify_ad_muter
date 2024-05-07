@@ -7,6 +7,15 @@ Mutes Spotify ads and removes the large banner ad.
 - Download the files
 - Install the modules in the `requirements.txt` file
 - Run the `main.py` file
+## Installing Tesseract
+- Run the following command to install `brew` and follow the instructions to add it to path
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+- Run the following command to install tesseract
+```
+brew install tesseract
+```
 ## Debugging
 - Make sure the Spotify app is open
 - Adjust the `MUTE_BUTTON_LOCATION` variable in the code to the position of the mute button on the app (assuming the window does not move)
