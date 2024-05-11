@@ -45,8 +45,9 @@ def takeScreenshot() -> numpy.ndarray:
 
     imageFileName = 'screenshot.png'
 
-    # -x mutes sound and -l specifies windowId
-    os.system(f'screencapture -x -l %s %s' % (windowId, imageFileName))
+    # -x mutes sound, -l specifies windowId, -R specifies region
+    width, height = pyautogui.size()
+    os.system(f'screencapture -x -l %s -R 0,{height},{2/3*width},{height} %s' % (windowId, imageFileName))
     img = Image.open(imageFileName)
     img = numpy.array(img)
     os.remove(imageFileName)
@@ -91,7 +92,6 @@ def mute_toggle(pos: Tuple[int, int]) -> None:
 
     pyautogui.leftClick(pos)
     sleep(0.1)
-    print(original_active_window)
     pyautogui.moveTo(mouse_pos)
     bring_window_to_foreground(original_active_window)
 
@@ -104,17 +104,17 @@ def main() -> None:
 
         extracted_text = ocr_on_screenshot(img)
 
-        if big_ad in extracted_text:
-            mute_toggle(EMPTY_LOCATION)
-        elif music_ad in extracted_text and not muted:
+        if music_ad in extracted_text and not muted:
             beep()
             mute_toggle(MUTE_BUTTON_LOCATION)
             muted = not muted
             print("Muted")
+        elif big_ad in extracted_text:
+            mute_toggle(EMPTY_LOCATION)
         elif music_ad not in extracted_text and muted:
             mute_toggle(MUTE_BUTTON_LOCATION)
             muted = not muted
-        sleep(1)
+        # sleep(1)
 
 
 if __name__ == "__main__":
